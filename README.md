@@ -12,3 +12,5 @@ Ghi chú lại tài liệu từng bước thực hiện.
 
 Hiểu được cấu trúc dự án và mã nguồn HTML, CSS
 
+2. Kiểm tra hoạt động 
+![đã hoạt động](image.png)
