@@ -79,6 +79,8 @@ function validateData(data){
  */
 function renderTableData(petArr){
     tableBodyEl.innerHTML=""; //gán giá trị rỗng cho bảng.
+    const check = 'bi bi-check-circle-fill';
+    const noncheck = 'bi bi-x-circle-fill';
     for(let i = 0; i < petArr.length; i++){
         let pet = petArr[i];
     /**
