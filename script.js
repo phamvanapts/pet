@@ -37,16 +37,21 @@ if(data.id == ""){ //Kiểm tra trường id có rỗng không.
         alert(" Please, Input ID !");
         return false;
     }
+    // alert(" Có dữ liệu ID !");
     return true;
 }
 /**
  * Kiểm tra trường id không trùng.
  */
 function checkUnique(id){
+    alert(" Hàm kiểm tra Trùng ID hay không!");
+    if(petArr == 0) return true;
     for(let i = 0; i < petArr.length; i++){
-        if(petArr[i].id = id){
+        if(petArr[i].id == id){
+            alert(` Trùng ID = ${id} !`);
             return false;
         }
+        alert(" Không trùng ID !");
         return true;
     }
 }
@@ -56,6 +61,7 @@ function checkUnique(id){
  */
 function checkBetween(name,val, min, max){
     if(val >=min && val <= max){
+        // alert(`${name} đạt trong khoảng từ ${min} đến ${max} !`);
         return true;
     }
     alert(`${name} must between ${min} and ${max} !`);
@@ -67,12 +73,17 @@ function checkBetween(name,val, min, max){
  */
 function validateData(data){
     // return true; // Tạm thời cho không kiểm tra để test các trường hợp khác
-    if(checkInput(data)
-    && checkBetween("Age",data.age, 1, 15)
-    && checkBetween("Weight",data.weight, 1, 15)
-    && checkBetween("Length",data.length, 1, 100)){
-    return false;}
-    return true;
+    if(checkInput(data) 
+        && checkUnique(data.id) 
+        && checkBetween("Age",data.age, 1, 15) 
+        && checkBetween("Weight",data.weight, 1, 15) 
+        && checkBetween("Length",data.length, 1, 100))
+        {
+            
+            return true;
+    }
+    return false;
+
 }
 /**
  * Hàm render các dòng HTML ra web.
@@ -148,6 +159,8 @@ submitBtn.addEventListener('click',function(e){
    // gọi hàm kiểm tra dữ liệu đầu vào.
    const validate = validateData(data);
    //nếu kiểm tra thoả điều kiện thì ghi dữ liệu.
+   alert('Số phần tử mảng = '+ petArr.length);
+   alert('Kiểm tra = '+ validate);
    if(validate){
     petArr.push(data);
     // nếu thoả điều kiện thú khoẻ mạnh.
@@ -157,6 +170,7 @@ submitBtn.addEventListener('click',function(e){
     // clearInput();
     renderTableData(petArr); 
    }
+   if(!validate) alert('Không thực hiện ghi dữ liệu');
 });
 
 /**
