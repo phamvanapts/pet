@@ -66,7 +66,7 @@ function checkBetween(name,val, min, max){
  * 
  */
 function validateData(data){
-    return true;
+    return true; // Tạm thời cho không kiểm tra để test các trường hợp khác
     if(checkInput(data)
     && checkBetween("Age",data.age, 1, 15)
     && checkBetween("Weight",data.weight, 1, 15)
@@ -83,27 +83,42 @@ function renderTableData(petArr){
     const noncheck = 'bi bi-x-circle-fill';
     for(let i = 0; i < petArr.length; i++){
         let pet = petArr[i];
-    /**
-     * đặt tên cho biến chứa các dòng HTML cần cho thể hiện tại giao diện 
-     */ 
-    const row = document.createElement('tr');
-    row.innerHTML =`<th scope="row">${pet.id}</th>
-                    <td>${pet.name}</td>
-                    <td>${pet.age}</td>
-                    <td>${pet.type}</td>
-                    <td>${pet.weight}</td>
-                    <td>${pet.length}</td>
-                    <td>${pet.breed}</td>
-                    <td>
-                        <i class="bi bi-square-fill" style="color: ${pet.color}"></i>
-                    </td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td>${pet.date.toISOString().split('T')[0]}</td>
-                    <td><button type="button" class="btn btn-danger">Delete</button>
-                    </td>`;
-    tableBodyEl.appendChild(row);
+        /**
+         * đặt tên cho biến chứa các dòng HTML cần cho thể hiện tại giao diện 
+         */ 
+        const row = document.createElement('tr');
+        row.innerHTML =`<th scope="row">${pet.id}</th>
+                        <td>${pet.name}</td>
+                        <td>${pet.age}</td>
+                        <td>${pet.type}</td>
+                        <td>${pet.weight}</td>
+                        <td>${pet.length}</td>
+                        <td>${pet.breed}</td>
+                        <td>
+                            <i class="bi bi-square-fill" style="color: ${pet.color}"></i>
+                        </td>
+                        <td><i class="${pet.heathyPet.vaccinated?check:noncheck}"></i></td>
+                        <td><i class="${pet.heathyPet.dewormed?check:noncheck}"></i></td>
+                        <td><i class="${pet.heathyPet.sterilized?check:noncheck}"></i></td>
+                        <td>${pet.date.toISOString().split('T')[0]}</td>
+                        <td><button type="button" class="btn btn-danger" onclick="deletePet('${pet.id}')">Delete</button>
+                        </td>`;
+        tableBodyEl.appendChild(row);
+    }
+}
+/**
+ * Hàm xoá dữ liệu thú cưng
+ */
+const deletePet = (petID)=>{
+    if(confirm('Bạn có muốn xoá không?')){
+        for(let i = 0; i < petArr.length; i++){
+            if(petArr[i].id==petID){
+                // alert("Hello"); Hàm kiểm tra hoạt động code
+                petArr.splice(i,1); //xoá 1 phần từ khỏi mảng
+                break;
+            }
+        }
+        renderTableData(petArr); //reder lại danh sách thú cưng.
     }
 }
 /**
@@ -135,7 +150,28 @@ submitBtn.addEventListener('click',function(e){
    //nếu kiểm tra thoả điều kiện thì ghi dữ liệu.
    if(validate){
     petArr.push(data);
+    if(data.heathyPet.vaccinated && data.heathyPet.sterilized && data.heathyPet.dewormed){
+        healthyPetArr.push(data);
+    }
     // clearInput();
     renderTableData(petArr);
    }
 });
+
+/**
+ * Mục 7: Hiển thị thú cưng khoẻ mạnh
+ */
+const healthybtn = document.getElementById('healthy-btn');
+const healthyPetArr = [];
+let healthycheck = false;
+
+healthybtn.addEventListener('click',function(){
+    if(!healthycheck){
+        renderTableData(healthyPetArr);
+        healthybtn.innerHTML = "Show All Pet";
+    }else{
+        renderTableData(petArr);
+        healthybtn.innerHTML = "Show HeathyPet Pet";
+    }
+    healthycheck = !healthycheck;
+})
