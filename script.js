@@ -66,7 +66,7 @@ function checkBetween(name,val, min, max){
  * 
  */
 function validateData(data){
-    return true; // Tạm thời cho không kiểm tra để test các trường hợp khác
+    // return true; // Tạm thời cho không kiểm tra để test các trường hợp khác
     if(checkInput(data)
     && checkBetween("Age",data.age, 1, 15)
     && checkBetween("Weight",data.weight, 1, 15)
@@ -150,11 +150,12 @@ submitBtn.addEventListener('click',function(e){
    //nếu kiểm tra thoả điều kiện thì ghi dữ liệu.
    if(validate){
     petArr.push(data);
+    // nếu thoả điều kiện thú khoẻ mạnh.
     if(data.heathyPet.vaccinated && data.heathyPet.sterilized && data.heathyPet.dewormed){
-        healthyPetArr.push(data);
+        healthyPetArr.push(data); //ghi dữ liệu những thú cưng khoẻ mạnh
     }
     // clearInput();
-    renderTableData(petArr);
+    renderTableData(petArr); 
    }
 });
 
