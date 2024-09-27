@@ -33,7 +33,7 @@ const tableBodyEl = document.getElementById("tbody");
  * Hàm kiểm tra nhập liệu của người dùng 
  */
 function checkInput(data){ 
-if(data.id == ""){ //Kiểm tra trường id có rỗng không.
+    if(data.id == ""){ //Kiểm tra trường id có rỗng không.
         alert(" Please, Input ID !");
         return false;
     }
@@ -44,16 +44,18 @@ if(data.id == ""){ //Kiểm tra trường id có rỗng không.
  * Kiểm tra trường id không trùng.
  */
 function checkUnique(id){
-    alert(" Hàm kiểm tra Trùng ID hay không!");
+    // alert(" Hàm kiểm tra Trùng ID hay không!");
     if(petArr == 0) return true;
+    // alert('Số phần tử mảng = '+ petArr.length);
     for(let i = 0; i < petArr.length; i++){
+        // alert(`Kiểm  phần tử mảng = ${i}`);
         if(petArr[i].id == id){
             alert(` Trùng ID = ${id} !`);
             return false;
         }
-        alert(" Không trùng ID !");
-        return true;
+        // alert(" Không trùng ID !");
     }
+    return true;
 }
 /**
  * Kiểm tra giá trị nằm trong khoản.
@@ -67,7 +69,15 @@ function checkBetween(name,val, min, max){
     alert(`${name} must between ${min} and ${max} !`);
     return false;
 }
+function checkType(name){
+    if(name =="Select Type" || name =="Select Breed"){
+        alert(`Please ${name}!`);
+        return false;
+    }
+    return true;
+}
 /**
+ * 3. Điều kiện khi nhập dữ liệu.
  * gọp nhiều điều kiện
  * 
  */
@@ -77,9 +87,10 @@ function validateData(data){
         && checkUnique(data.id) 
         && checkBetween("Age",data.age, 1, 15) 
         && checkBetween("Weight",data.weight, 1, 15) 
-        && checkBetween("Length",data.length, 1, 100))
+        && checkBetween("Length",data.length, 1, 100)
+        && checkType(data.type)
+        && checkType(data.breed))
         {
-            
             return true;
     }
     return false;
@@ -159,8 +170,8 @@ submitBtn.addEventListener('click',function(e){
    // gọi hàm kiểm tra dữ liệu đầu vào.
    const validate = validateData(data);
    //nếu kiểm tra thoả điều kiện thì ghi dữ liệu.
-   alert('Số phần tử mảng = '+ petArr.length);
-   alert('Kiểm tra = '+ validate);
+    //    alert('Số phần tử mảng = '+ petArr.length);
+    //    alert('Kiểm tra = '+ validate);
    if(validate){
     petArr.push(data);
     // nếu thoả điều kiện thú khoẻ mạnh.
@@ -175,10 +186,12 @@ submitBtn.addEventListener('click',function(e){
 
 /**
  * Mục 7: Hiển thị thú cưng khoẻ mạnh
+ * Khi click vào button "healthy-btn" sẽ hiển thị thông tin
+ * Thú cưng khoẻ mạnh khi cả 3 yc được checked.
  */
-const healthybtn = document.getElementById('healthy-btn');
-const healthyPetArr = [];
-let healthycheck = false;
+const healthybtn = document.getElementById('healthy-btn'); // tạo tên biến healthybtn
+const healthyPetArr = []; // mảng chứ thú cưng khoẻ mạng đạt yêu cầu
+let healthycheck = false; // Biến kiểm tra
 
 healthybtn.addEventListener('click',function(){
     if(!healthycheck){
