@@ -122,6 +122,7 @@ function renderTableData(petArr){
                         <td><i class="${pet.heathyPet.vaccinated?check:noncheck}"></i></td>
                         <td><i class="${pet.heathyPet.dewormed?check:noncheck}"></i></td>
                         <td><i class="${pet.heathyPet.sterilized?check:noncheck}"></i></td>
+                        <td>${pet.bmi}</td>
                         <td>${pet.date.toISOString().split('T')[0]}</td>
                         <td><button type="button" class="btn btn-danger" onclick="deletePet('${pet.id}')">Delete</button>
                         </td>`;
@@ -166,6 +167,7 @@ submitBtn.addEventListener('click',function(e){
         sterilized: sterilizedInput.checked
     },
     date: new Date(),
+    bmi: '?'
    }
    // gọi hàm kiểm tra dữ liệu đầu vào.
    const validate = validateData(data);
@@ -203,3 +205,7 @@ healthybtn.addEventListener('click',function(){
     }
     healthycheck = !healthycheck;
 })
+/**
+ * 8. Tính BMI cho thú cưng
+ * Công thức tính được cho sẵn
+ */
