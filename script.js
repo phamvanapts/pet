@@ -209,3 +209,17 @@ healthybtn.addEventListener('click',function(){
  * 8. Tính BMI cho thú cưng
  * Công thức tính được cho sẵn
  */
+function BMICal(){
+    for (var i = 0; i < petArr.length; i++){
+        var bmi = 0;
+        if(petArr[i].type == "Dog"){
+            bmi = (petArr[i].weight * 703) / petArr[i].length ** 2;
+        }
+        if(petArr[i].type = "Cat"){
+            bmi = (petArr[i].weight * 886) / petArr[i].length ** 2;
+        }
+        // alert(bmi);
+        petArr[i].bmi = bmi;
+    }
+    renderTableData(petArr);
+}
