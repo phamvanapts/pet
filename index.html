@@ -28,8 +28,11 @@
 		table .btn.btn-danger {
 			font-size: 14px;
 		}
+		#main{
+			display: none;
+		}
 	</style>
-	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -37,7 +40,7 @@
 		<!-- Sidebar Holder -->
 		<nav id="sidebar" class="active">
 			<div class="sidebar-header" id="sidebar-title">
-				<h3><i class="bi bi-envelope-paper-heart-fill"></i> Pet App</h3>
+				<h3><i class="bi bi-envelope-paper-heart-fill"></i> Quản lý PET</h3>
 				<strong><i class="bi bi-list"></i></strong>
 			</div>
 
@@ -46,6 +49,24 @@
 					<a href="#">
 						<i class="bi bi-house"></i>
 						Home
+					</a>
+				</li>
+				<li class="">
+					<a href="#">
+						<i class="bi bi-pencil-square"></i>
+						Edit
+					</a>
+				</li>
+				<li class="">
+					<a href="#">
+						<i class="bi bi-search"></i>
+						Search
+					</a>
+				</li>
+				<li class="">
+					<a href="#">
+						<i class="bi bi-list-ol"></i>
+						Breed
 					</a>
 				</li>
 				<li class="">
@@ -61,7 +82,16 @@
 		<div id="content">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#">Pet Management</a>
+					<div class="collapse navbar-collapse">
+						<a class="navbar-brand" href="#">Pet Management</a>
+						<button type="button" class="btn btn-outline-primary me-2" id="add-btn">Add</button>
+						<button type="button" class="btn btn-warning me-2" id="healthy-btn">Show Healthy Pet</button>
+						<button type="button" class="btn btn-warning me-2" id="bmi" onclick="BMICal()">BMI</button>
+						<form class="d-flex justify-content-end" role="search">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success justify-content-end" type="submit">Search</button>
+						  </form>
+					</div>
 				</div>
 			</nav>
 			<div class="container" id="main">
@@ -146,8 +176,8 @@
 								</div>
 							</div>
 							<button type="button" class="btn btn-primary" id="submit-btn">Submit</button>
-							<button type="button" class="btn btn-warning" id="healthy-btn">Show Healthy Pet</button>
-							<button type="button" class="btn btn-warning" id="bmi" onclick="BMICal()">BMI</button>
+							
+							
 						</form>
 					</div>
 				</div>
@@ -173,7 +203,7 @@
 						</tr>
 					</thead>
 					<tbody id="tbody">
-						<tr>
+						<!-- <tr>
 							<th scope="row">P001</th>
 							<td>Tom</td>
 							<td>3</td>
@@ -210,7 +240,7 @@
 							<td>02/03/2022</td>
 							<td><button type="button" class="btn btn-danger">Delete</button>
 							</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
@@ -229,7 +259,8 @@
 			sidebarEl.classList.toggle('active');
 		});
 	</script>
-	<script src="./script.js"></script>
+	<script src="./js/script.js"></script>
+	<script src="./js/storages.js"></script>
 </body>
 
 </html>

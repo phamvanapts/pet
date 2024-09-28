@@ -223,3 +223,22 @@ function BMICal(){
     }
     renderTableData(petArr);
 }
+/**
+ * Button Add 
+ * Giao diện ẩn phần thêm dữ liệu
+ * Khi ấn Add thì mới hiện ra cho người nhập vào.
+ */
+const addbtn = document.getElementById("add-btn");
+let showMain = false;
+addbtn.addEventListener('click', function(){
+    if(!showMain){
+        document.getElementById('main').style.display='block';
+        showMain = !showMain;
+        addbtn.innerHTML = "Hide";
+    }else{
+        document.getElementById('main').style.display='none';
+        showMain = !showMain;
+        addbtn.innerHTML = "Add";
+    }
+
+})
