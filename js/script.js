@@ -7,6 +7,11 @@ alert("Kiểm tra hoạt động");
  * Tạo một biến global tên là petArr là một mảng lưu danh sách thú cưng
  */
 // const petArr = [];
+const ngay = new Date().getDate();
+const thang = new Date().getMonth()+1;
+const nam = new Date().getFullYear();
+const date = ngay+ "-"+thang+"-"+nam;
+// alert(`${ngay}-${thang}-${nam}`);
 /**
  * Mục 1
  * Lấy các DOM Element từ trang WEB
@@ -167,7 +172,7 @@ submitBtn.addEventListener('click',function(e){
         dewormed: dewormedInput.checked,
         sterilized: sterilizedInput.checked
     },
-    date: new Date(),
+    date: date,
     bmi: '?'
    }
    // gọi hàm kiểm tra dữ liệu đầu vào.

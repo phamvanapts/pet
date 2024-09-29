@@ -1,8 +1,7 @@
 'use strict';
-// alert("Kiểm tra hoạt động JS");
-// let petArr = [];
 /**
  * Tạo bộ dữ liệu cơ bản cho web
+ * Dữ liệu sẽ được cập nhật vào petArr
 */
 const data1 = {
     id: "P001",
@@ -18,9 +17,12 @@ const data1 = {
         dewormed: "true",
         sterilized: "true",
     },
-    date: new Date(),
+    date: "29-9-2024",
     bmi: "?"
 }
+/**
+ * Tạo dữ liệu cho localStorage breeed
+ */
 const breed1 = {
     breed: "Mixed",
     type: "Dog"
