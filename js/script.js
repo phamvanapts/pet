@@ -6,7 +6,7 @@ alert("Kiểm tra hoạt động");
  * Mục 4
  * Tạo một biến global tên là petArr là một mảng lưu danh sách thú cưng
  */
-const petArr = [];
+// const petArr = [];
 /**
  * Mục 1
  * Lấy các DOM Element từ trang WEB
@@ -123,12 +123,13 @@ function renderTableData(petArr){
                         <td><i class="${pet.heathyPet.dewormed?check:noncheck}"></i></td>
                         <td><i class="${pet.heathyPet.sterilized?check:noncheck}"></i></td>
                         <td>${pet.bmi}</td>
-                        <td>${pet.date.toISOString().split('T')[0]}</td>
+                        <td>${pet.date}</td>
                         <td><button type="button" class="btn btn-danger" onclick="deletePet('${pet.id}')">Delete</button>
                         </td>`;
         tableBodyEl.appendChild(row);
     }
 }
+renderTableData(petArr);
 /**
  * Hàm xoá dữ liệu thú cưng
  */
@@ -175,13 +176,14 @@ submitBtn.addEventListener('click',function(e){
     //    alert('Số phần tử mảng = '+ petArr.length);
     //    alert('Kiểm tra = '+ validate);
    if(validate){
-    petArr.push(data);
-    // nếu thoả điều kiện thú khoẻ mạnh.
-    if(data.heathyPet.vaccinated && data.heathyPet.sterilized && data.heathyPet.dewormed){
-        healthyPetArr.push(data); //ghi dữ liệu những thú cưng khoẻ mạnh
-    }
-    // clearInput();
-    renderTableData(petArr); 
+       petArr.unshift(data);
+       // nếu thoả điều kiện thú khoẻ mạnh.
+       if(data.heathyPet.vaccinated && data.heathyPet.sterilized && data.heathyPet.dewormed){
+           healthyPetArr.push(data); //ghi dữ liệu những thú cưng khoẻ mạnh
+        }      
+        renderTableData(petArr);
+       console.log(`data.heathyPet.vaccinated = ${data.heathyPet.vaccinated}`);
+
    }
    if(!validate) alert('Không thực hiện ghi dữ liệu');
 });
