@@ -24,8 +24,8 @@ const data1 = {
  * Tạo dữ liệu cho localStorage breeed
  */
 const breed1 = {
-    breed: "Mixed",
-    type: "Dog"
+    namebreed: "Chú Phú Quốc - Lưu Storage",
+    typebreed: "Dog"
 }
 const saveToStorage = function (key, value){
         localStorage.setItem(key, JSON.stringify(value));

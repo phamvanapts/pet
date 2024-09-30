@@ -39,11 +39,11 @@ const tableBodyEl = document.getElementById("tbody");
  */
 function checkInput(data){ 
     if(data.id == ""){ //Kiểm tra trường id có rỗng không.
-        alert(" Please, Input ID !");
-        return false;
+        alert(" Please, Input ID !"); //Thông báo phải nhập ID
+        return false;  // Trả về giá trị false ==> Không ghi được dữ liệu
     }
     // alert(" Có dữ liệu ID !");
-    return true;
+    return true;    // Trả về true ==> kiểm tra các điều kiện khác.
 }
 /**
  * Kiểm tra trường id không trùng.
@@ -185,9 +185,9 @@ submitBtn.addEventListener('click',function(e){
        // nếu thoả điều kiện thú khoẻ mạnh.
        if(data.heathyPet.vaccinated && data.heathyPet.sterilized && data.heathyPet.dewormed){
            healthyPetArr.push(data); //ghi dữ liệu những thú cưng khoẻ mạnh
-        }      
+        }
+        saveToStorage('petArr',petArr)      
         renderTableData(petArr);
-       console.log(`data.heathyPet.vaccinated = ${data.heathyPet.vaccinated}`);
 
    }
    if(!validate) alert('Không thực hiện ghi dữ liệu');
