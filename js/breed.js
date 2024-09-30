@@ -49,12 +49,24 @@ function renderTableBreed(breedArr){
 
 renderTableBreed(breedArr); // render breed khi chạy
 /**
+ * Hàm kiểm tra namebreed có rỗng hay không.
+ * Nếu rỗng thì thông báo
+ */
+function breedUnique(databreed){
+    return false; //trả về false ==> không ghi dữ liệu
+} //kết thúc hàm
+/**
  * Hàm kiểm tra điều kiện để nhập một loạ giống vào
  * 1. Kiểm tra namebreed không rỗng.
  * 2. Kiểm tra namebreed không trùng trong breedArr
  * 3. Loại phải được chọn.
  */
-
+function validateBreed(databreed){
+    if(breedUnique(databreed.namebreed)){     //Kiểm tra breed không bị trùng
+        return true;                //trả về giá trị đúng
+    } // kết thúc if
+    return false; //trả về giá trị false ==> Kiểm tra sai, không thực hiện ghi dữ liệu
+}
 /**
  * Thêm mới 1 Breeed
  * Khi ấn nút
@@ -62,16 +74,20 @@ renderTableBreed(breedArr); // render breed khi chạy
  * Kiểm tra điều kiện đã có Breedname chưa
  */
 submitbreedbtn.addEventListener('click', function(e){
-    const databreed ={
-        namebreed: inputbreed.value,
-        typebreed: inputbreedtype.value,
-    };
-    // console.log(`namebreed = ${databreed.namebreed}`); //Kiểm tra kết quả nhập từ bàn phím
-    // console.log(`typebreed = ${databreed.typebreed}`); //Kiểm tra kết quả nhập từ bàn phím
-    breedArr.unshift(databreed); // Đưa vào đầu mảng breedArr
-    renderTableBreed(breedArr);  // Render mảng ra trang;
-    saveToStorage('breedArr',breedArr);   // Lưu vào Storage
-})
+    const databreed ={                       // Tạo đối tượng databreed gồm 2 phần tử
+        namebreed: inputbreed.value,        // gán giá trị namebreed từ form nhập
+        typebreed: inputbreedtype.value,    // gán giá trị typebreed từ form nhập
+    }; //kết thúc tạo đối tượng
+    const validate = validateBreed(databreed); //Gán biến bằng hàm kiểm tra
+    if(validateBreed){
+        breedArr.unshift(databreed); // Đưa vào đầu mảng breedArr
+        renderTableBreed(breedArr);  // Render mảng ra trang;
+        saveToStorage('breedArr',breedArr);   // Lưu vào Storage
+    } else{
+        alert(`Không lưu được Breed! Hãy thực hiện lại`); //Thông báo không lưu
+    } // kết thúc if
+}   // kết thúc hàm
+) //kết thúc nút submit      
 /**
  * Xoá một breed
  * Khi ấn Delete hiện thông báo có muốn xoá không.

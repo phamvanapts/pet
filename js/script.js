@@ -46,21 +46,20 @@ function checkInput(data){
     return true;    // Trả về true ==> kiểm tra các điều kiện khác.
 }
 /**
+ * Hàm checkUnique(id)
  * Kiểm tra trường id không trùng.
+ * Nếu id trùng trả về giá trị false
+ * Nếu không trùng trả về giá trị true
  */
 function checkUnique(id){
-    // alert(" Hàm kiểm tra Trùng ID hay không!");
-    if(petArr == 0) return true;
-    // alert('Số phần tử mảng = '+ petArr.length);
-    for(let i = 0; i < petArr.length; i++){
-        // alert(`Kiểm  phần tử mảng = ${i}`);
-        if(petArr[i].id == id){
-            alert(` Trùng ID = ${id} !`);
-            return false;
+    if(petArr == 0) return true; //Nếu petArr rỗng thì trả về true
+    for(let i = 0; i < petArr.length; i++){ // lập hết mảng petArr
+        if(petArr[i].id == id){             // Nếu petArr thứ i trùng với giá trị kiểm tra
+            alert(` Trùng ID = ${id} !`);   // Thông báo trùng ID
+            return false;                   // trả về false ==> Không thực hiện ghi dữ liệu.    
         }
-        // alert(" Không trùng ID !");
-    }
-    return true;
+    }   // kết thúc for
+    return true;                //trả về giá trị true ==> Kiểm tra các điều kiện khác.
 }
 /**
  * Kiểm tra giá trị nằm trong khoản.
