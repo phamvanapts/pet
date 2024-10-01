@@ -47,22 +47,55 @@ function renderTableBreed(breedArr){
     }
 }
 
-renderTableBreed(breedArr); // render breed khi chạy
+renderTableBreed(breedArr); // render breed khởi tạo.
 /**
- * Hàm kiểm tra namebreed có rỗng hay không.
- * Nếu rỗng thì thông báo
+ * 1.Hàm kiểm tra namebreed có rỗng không
+ * Nếu namebreed rỗng thì trả về false, ngược lại true
+ */
+function checkNameBreed(databreed){
+    if(databreed ==""){             //Nếu namebreed rỗng
+        alert("Nhập vào Breed");    //Thông báo nhập Breed
+        return false;               //Trả về false ==> không ghi dữ liệu 
+    } //Kết thúc if
+    return true;                    //Trả về true
+}
+/**
+ * 2.Hàm kiểm tra namebreed có trùng với các namebreed khác hay không.
+ * Nếu mảng breed rỗng thì trả về true
+ *  Nếu trùng thì thông báo, trả về false, ngược lại thì true
  */
 function breedUnique(databreed){
-    return false; //trả về false ==> không ghi dữ liệu
+    if(breedArr.length==0) return true; //Nếu mảng breed rỗng thì trả về true
+    for(let i =0; i < breedArr.length; i ++){ // duyệt mảng breedArr
+        if(breedArr[i].namebreed == databreed){
+            alert("Trùng tên breed, nhập lại!"); // Thông báo trùng tên
+            return false;   //trả về false ==> không ghie dữ liệu.
+        }// kết thúc if
+    }
+    return true; //trả về true ==> kiểm tra không trùng tên breed.
 } //kết thúc hàm
+/**
+ * 3.Kiểm tra type đã được chọn hay chưa
+ * Nếu type = "Select Type " thì trả về false ==> không ghi dữ liệu
+ * Ngược lại thì true.
+ */
+function checkTypeBreed(databreed){
+    if(databreed =="Select Type"){             //Nếu namebreed rỗng
+        alert("Chọn Type Breed");    //Thông báo nhập Type Breed
+        return false;               //Trả về false ==> không ghi dữ liệu 
+    } //Kết thúc if
+    return true;                    //Trả về true
+}//kết thúc hàm
 /**
  * Hàm kiểm tra điều kiện để nhập một loạ giống vào
  * 1. Kiểm tra namebreed không rỗng.
  * 2. Kiểm tra namebreed không trùng trong breedArr
  * 3. Loại phải được chọn.
  */
-function validateBreed(databreed){
-    if(breedUnique(databreed.namebreed)){     //Kiểm tra breed không bị trùng
+function validateBreed(databreed){                  //Hàm kiểm tra
+    if(breedUnique(databreed.namebreed)             //điều kiện tên duy nhất
+        &&checkNameBreed(databreed.namebreed)       //Kiểm tra breed không bị trùng  
+        &&checkTypeBreed(databreed.typebreed)){     //Kiểm tra type
         return true;                //trả về giá trị đúng
     } // kết thúc if
     return false; //trả về giá trị false ==> Kiểm tra sai, không thực hiện ghi dữ liệu
@@ -79,7 +112,8 @@ submitbreedbtn.addEventListener('click', function(e){
         typebreed: inputbreedtype.value,    // gán giá trị typebreed từ form nhập
     }; //kết thúc tạo đối tượng
     const validate = validateBreed(databreed); //Gán biến bằng hàm kiểm tra
-    if(validateBreed){
+    // alert(validate); //Kiểm tra giá trị validate
+    if(validate){
         breedArr.unshift(databreed); // Đưa vào đầu mảng breedArr
         renderTableBreed(breedArr);  // Render mảng ra trang;
         saveToStorage('breedArr',breedArr);   // Lưu vào Storage
@@ -91,7 +125,7 @@ submitbreedbtn.addEventListener('click', function(e){
 /**
  * Xoá một breed
  * Khi ấn Delete hiện thông báo có muốn xoá không.
- * Nếu đòng ý thì xoá
+ * Nếu đồng ý thì xoá
  */
 const DeleteBreed = (namebreed)=>{
     if(confirm('Bạn có muốn xoá không?')){
