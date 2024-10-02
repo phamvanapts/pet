@@ -33,14 +33,14 @@ function renderTableBreed(breedArr){
     tableBodyEl.innerHTML=""; //gán giá trị rỗng cho bảng.
     for(let i = 0; i < breedArr.length; i++){
         // alert(breedArr.length);
-        let breed = breedArr[i];
+        // let breed = breedArr[i];
         const row = document.createElement('tr');
         row.innerHTML =`<tr>
 							<th scope="row">${i+1}</th>
-							<td>${breed.namebreed}</td>
-							<td>${breed.typebreed}</td>
+							<td>${breedArr[i].breed}</td>
+							<td>${breedArr[i].type}</td>
 							<td><button type="button" class="btn btn-danger" 
-                            onclick="DeleteBreed('${breed.namebreed}')"> <i class="bi bi-trash3"></i></button>
+                            onclick="DeleteBreed('${breedArr[i].name}')"> <i class="bi bi-trash3"></i></button>
 							</td>
 						</tr>`;
         tableBodyEl.appendChild(row);
@@ -67,7 +67,7 @@ function checkNameBreed(databreed){
 function breedUnique(databreed){
     if(breedArr.length==0) return true; //Nếu mảng breed rỗng thì trả về true
     for(let i =0; i < breedArr.length; i ++){ // duyệt mảng breedArr
-        if(breedArr[i].namebreed == databreed){
+        if(breedArr[i].breed == databreed){
             alert("Trùng tên breed, nhập lại!"); // Thông báo trùng tên
             return false;   //trả về false ==> không ghie dữ liệu.
         }// kết thúc if
@@ -93,9 +93,9 @@ function checkTypeBreed(databreed){
  * 3. Loại phải được chọn.
  */
 function validateBreed(databreed){                  //Hàm kiểm tra
-    if(breedUnique(databreed.namebreed)             //điều kiện tên duy nhất
-        &&checkNameBreed(databreed.namebreed)       //Kiểm tra breed không bị trùng  
-        &&checkTypeBreed(databreed.typebreed)){     //Kiểm tra type
+    if(breedUnique(databreed.breed)             //điều kiện tên duy nhất
+        &&checkNameBreed(databreed.breed)       //Kiểm tra breed không bị trùng  
+        &&checkTypeBreed(databreed.type)){     //Kiểm tra type
         return true;                //trả về giá trị đúng
     } // kết thúc if
     return false; //trả về giá trị false ==> Kiểm tra sai, không thực hiện ghi dữ liệu
@@ -108,8 +108,8 @@ function validateBreed(databreed){                  //Hàm kiểm tra
  */
 submitbreedbtn.addEventListener('click', function(e){
     const databreed ={                       // Tạo đối tượng databreed gồm 2 phần tử
-        namebreed: inputbreed.value,        // gán giá trị namebreed từ form nhập
-        typebreed: inputbreedtype.value,    // gán giá trị typebreed từ form nhập
+        breed: inputbreed.value,        // gán giá trị namebreed từ form nhập
+        type: inputbreedtype.value,    // gán giá trị typebreed từ form nhập
     }; //kết thúc tạo đối tượng
     const validate = validateBreed(databreed); //Gán biến bằng hàm kiểm tra
     // alert(validate); //Kiểm tra giá trị validate
@@ -127,10 +127,11 @@ submitbreedbtn.addEventListener('click', function(e){
  * Khi ấn Delete hiện thông báo có muốn xoá không.
  * Nếu đồng ý thì xoá
  */
-const DeleteBreed = (namebreed)=>{
+const DeleteBreed = (breed)=>{
     if(confirm('Bạn có muốn xoá không?')){
         for(let i = 0; i < breedArr.length; i++){
-            if(breedArr[i].namebreed == namebreed){
+            if(breedArr[i].breed == breed){
+                alert("test");
                 // alert(`namebreed = ${namebreed}`);
                 breedArr.splice(i,1); //xoá 1 phần từ khỏi mảng
                 saveToStorage('breedArr',breedArr);   // Lưu vào Storage
