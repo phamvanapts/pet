@@ -91,7 +91,8 @@ function renderTableData(petArr){
                         <td><i class="${pet.heathyPet.sterilized?check:noncheck}"></i></td>
                         <td>${pet.bmi}</td>
                         <td>${pet.date}</td>
-                        <td><button type="button" class="btn btn-primary" onclick="editPet('${pet.id}')">Edit</button>
+                        <td><button type="button" class="btn btn-primary" onclick="editPet('${pet.id}')">
+                            <i class="bi bi-pencil-square"></i></button>
                         </td>`;
         tableBodyEl.appendChild(row);
     }
@@ -176,7 +177,6 @@ function checkType(name){
 /**
  * 3. Điều kiện khi nhập dữ liệu.
  * gọp nhiều điều kiện
- * 
  */
 function validateData(data){
     // return true; // Tạm thời cho không kiểm tra để test các trường hợp khác
@@ -225,14 +225,14 @@ submitBtn.addEventListener('click',function(e){
     if(validate){
         const index = petArr.findIndex((pet)=>pet.id === data.id);
         petArr[index] = data; 
-        alert(`Kiểm tra index ${index}`);
-       // nếu thoả điều kiện thú khoẻ mạnh.
-    //    if(data.heathyPet.vaccinated && data.heathyPet.sterilized && data.heathyPet.dewormed){
-    //        healthyPetArr.push(data); //ghi dữ liệu những thú cưng khoẻ mạnh
-    //     }
-        saveToStorage('petArr',petArr)     //Lưu vào localStorage 
-        renderTableData(petArr);           // cập nhật lại danh sách thú cưng
-
+        // nếu thoả điều kiện thú khoẻ mạnh.
+        //    if(data.heathyPet.vaccinated && data.heathyPet.sterilized && data.heathyPet.dewormed){
+            //        healthyPetArr.push(data); //ghi dữ liệu những thú cưng khoẻ mạnh
+            //     }
+            saveToStorage('petArr',petArr)     //Lưu vào localStorage 
+            renderTableData(petArr);           // cập nhật lại danh sách thú cưng
+            alert(`Đã cập nhật xong ${data.name}`);
+            
    }
-   if(!validate) alert('Không thực hiện ghi dữ liệu');
+   if(!validate) alert('Không cập nhật. Sai dữ liệu');
 })

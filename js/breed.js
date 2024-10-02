@@ -40,7 +40,7 @@ function renderTableBreed(breedArr){
 							<td>${breed.namebreed}</td>
 							<td>${breed.typebreed}</td>
 							<td><button type="button" class="btn btn-danger" 
-                            onclick="DeleteBreed('${breed.namebreed}')">Delete</button>
+                            onclick="DeleteBreed('${breed.namebreed}')"> <i class="bi bi-trash3"></i></button>
 							</td>
 						</tr>`;
         tableBodyEl.appendChild(row);

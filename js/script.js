@@ -162,7 +162,7 @@ function renderTableData(petArr){
                         <td><i class="${pet.heathyPet.sterilized?check:noncheck}"></i></td>
                         <td>${pet.bmi}</td>
                         <td>${pet.date}</td>
-                        <td><button type="button" class="btn btn-danger" onclick="deletePet('${pet.id}')">Delete</button>
+                        <td><button type="button" class="btn btn-danger" onclick="deletePet('${pet.id}')"><i class="bi bi-trash3"></i></button>
                         </td>`;
         tableBodyEl.appendChild(row);
     }
@@ -232,7 +232,7 @@ submitBtn.addEventListener('click',function(e){
  * Thú cưng khoẻ mạnh khi cả 3 yc được checked.
  */
 const healthybtn = document.getElementById('healthy-btn'); // tạo tên biến healthybtn
-const healthyPetArr = []; // mảng chứ thú cưng khoẻ mạng đạt yêu cầu
+const healthyPetArr = []; // mảng chứ thú cưng khoẻ mạng đạt yêu cầu ==> Hàm tìm kiếm
 let healthycheck = false; // Biến kiểm tra
 
 healthybtn.addEventListener('click',function(){
@@ -258,7 +258,7 @@ function BMICal(){
         if(petArr[i].type = "Cat"){
             bmi = (petArr[i].weight * 886) / petArr[i].length ** 2;
         }
-        // alert(bmi);
+        bmi = Math.round(bmi*100)/100;
         petArr[i].bmi = bmi;
     }
     saveToStorage('petArr',petArr);
