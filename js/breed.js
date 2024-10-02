@@ -6,7 +6,7 @@
  * Khi ấn Add thì mới hiện ra cho người nhập vào.
  */
 const addBreedbtn = document.getElementById("add__breed-btn");
-let showMain = false;
+let showMain = false; 
 addBreedbtn.addEventListener('click', function(){
     if(!showMain){
         document.getElementById('main__breed').style.display='block';
@@ -22,10 +22,10 @@ addBreedbtn.addEventListener('click', function(){
 /**
  * Gán các giá trị dữ liệu từ form nhập
  */
-const tableBodyEl = document.getElementById("tbody");
-const inputbreed = document.getElementById("input-breed");
-const inputbreedtype = document.getElementById("inputbreed-type");
-const submitbreedbtn = document.getElementById("submitbreed-btn");
+const tableBodyEl = document.getElementById("tbody");               //tạo biến lưu đoạn code html
+const inputbreed = document.getElementById("input-breed");          // biến lưu DOM form inputbreed
+const inputbreedtype = document.getElementById("inputbreed-type");  //biến lưu DOM breedtype
+const submitbreedbtn = document.getElementById("submitbreed-btn");  // biến lưu DOM button submit
 /**
  * Thể hiện reder HTML bản Breed
  */

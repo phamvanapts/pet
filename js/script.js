@@ -118,9 +118,9 @@ function renderBreed(){
         
         breedDogs.forEach(function(breedItem){
             // alert("Kiểm tra")
-            const option = document.createElement("option"); //khai báo biến option 
-            option.innerHTML = `${breedItem.namebreed}`;         //gán giá trị cho option là mảng các namebreed
-            breedInput.appendChild(option);                  //gán giá trị cho breedInput
+            const option = document.createElement("option");      //khai báo biến option 
+            option.innerHTML = `${breedItem.namebreed}`;          //gán giá trị cho option là mảng các namebreed
+            breedInput.appendChild(option);                        //gán giá trị cho breedInput
         }//Kết thúc function
     );  //Kết thúc forEach
 } else if(typeInput.value === "Cat"){  //điều kiện là Cat
@@ -188,8 +188,7 @@ const deletePet = (petID)=>{
  * Hàm lấy được thông tin từ nhấn vào nút Submit
  */
 submitBtn.addEventListener('click',function(e){
-    // alert("Kiểm tra hoạt động khi ấn SUBmit") ==> đã hoạt động
-   /**
+    /**
     * lấy dữ liệu từ các ô nhập.
     */ 
    const data = {
