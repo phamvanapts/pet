@@ -119,7 +119,7 @@ function renderBreed(){
         breedDogs.forEach(function(breedItem){
             // alert("Kiểm tra")
             const option = document.createElement("option");      //khai báo biến option 
-            option.innerHTML = `${breedItem.breed}`;          //gán giá trị cho option là mảng các namebreed
+            option.innerHTML = `${breedItem.breed}`;                //gán giá trị cho option là mảng các namebreed
             breedInput.appendChild(option);                        //gán giá trị cho breedInput
         }//Kết thúc function
     );  //Kết thúc forEach
