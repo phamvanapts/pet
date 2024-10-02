@@ -2,7 +2,7 @@
 // /** Kiểm tra hoạt động của script chưa//
 // alert("Kiểm tra hoạt động"); 
 /**
- * Mục 1
+ * 
  * Lấy các DOM Element từ trang WEB
  */
 const submitBtn = document.getElementById("submit-btn");
@@ -17,6 +17,7 @@ const breedInput = document.getElementById("input-breed");
 const vaccinatedInput = document.getElementById("input-vaccinated");
 const dewormedInput = document.getElementById("input-dewormed");
 const sterilizedInput = document.getElementById("input-sterilized");
+let showEditPet = false; // gán giá trị showEditPet là false ==> không hiện lên
 /**
  * Khai báo đối tượng cho table chứa thú cưng.
  */
@@ -58,18 +59,22 @@ renderTableData(petArr);
 /**
  * Hàm editPet(pet.id)
  * Khi click vào sẽ show id edit-pet
- * 
+ * Đưa thông tin lên form
  */
-const editPet = (petID)=>{
-    if(confirm('Bạn có muốn xoá không?')){
-        for(let i = 0; i < petArr.length; i++){
-            if(petArr[i].id==petID){
-                // alert("Hello"); Hàm kiểm tra hoạt động code
-                petArr.splice(i,1); //xoá 1 phần từ khỏi mảng
-                break;
-            }
-        }
-        saveToStorage('petArr',petArr);
-        renderTableData(petArr); //reder lại danh sách thú cưng.
+const editPet = (petID)=>{      //Khi ấn nút Edit
+    if(!showEditPet){   //Nếu showEditPet == true thì  
+        document.getElementById("edit-pet").style.display='block'; //showform thông tin nhập thú cưng
+        const pet = petArr.find((petItem) =>petItem.id == petID);
+        idInput.value = pet.id; //gán giá trị mảng cho form
+        nameInput.value = pet.name; //gán giá trị mảng cho form
+        ageInput.value = pet.age; //gán giá trị mảng cho form
+        typeInput.value = pet.type; //gán giá trị mảng cho form
+        weightInput.value = pet.weight; //gán giá trị mảng cho form
+        lengthInput.value = pet.length; //gán giá trị mảng cho form
+        colorInput.value = pet.color; //gán giá trị mảng cho form
+        vaccinatedInput.checked = pet.heathyPet.vaccinated; //gán giá trị mảng cho form
+        dewormedInput.checked = pet.heathyPet.dewormed; //gán giá trị mảng cho form
+        sterilizedInput.checked = pet.heathyPet.sterilized; //gán giá trị mảng cho form
+        // alert(pet.breed);
     }
 }
