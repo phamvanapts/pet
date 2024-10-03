@@ -27,6 +27,18 @@ const breed1 = {
     breed: "Chú Phú Quốc - Lưu Storage",
     type: "Dog"
 }
+const breed2 = {
+    breed: "Tabby",
+    type: "Dog"
+}
+const breed3 = {
+    breed: "Domestic Medium Hair",
+    type: "Cat"
+}
+const breed4 = {
+    breed: "Mixed Breed",
+    type: "Cat"
+}
 const saveToStorage = function (key, value){
         localStorage.setItem(key, JSON.stringify(value));
 };
@@ -50,7 +62,7 @@ const petArr = getFromStorage("petArr");
  * Nếu chưa có Storage
 */
 if(!getFromStorage('breedArr')){
-    saveToStorage('breedArr',[breed1]);
+    saveToStorage('breedArr',[breed1,breed2,breed3,breed4]);
 }
 /**
  * Các Hàm định nghĩa Storage
