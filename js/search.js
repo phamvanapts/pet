@@ -80,5 +80,9 @@ findbtn.addEventListener('click',function(e){
         petArrFind = petArrFind.filter((pet)=>pet.name.includes(nameInput.value)); //lọc giá trị idInput khi có giá trị 
         // alert(`Kiểm tra `);
     }
+    if(typeInput.value !== "Select Type"){    //nếu idInput có giá trị thì
+        petArrFind = petArrFind.filter((pet)=>pet.type === typeInput.value); //lọc giá trị idInput khi có giá trị 
+        // alert(`Kiểm tra `);
+    }
     renderTableData(petArrFind); // Hiển thị mảng petArrFind ra trang
 })
