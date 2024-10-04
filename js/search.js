@@ -25,7 +25,11 @@
  */
 function renderTableData(petArr){
     tableBodyEl.innerHTML=""; //gán giá trị rỗng cho bảng.
-    sumPet.innerHTML=`<h4>Có ${petArr.length} thú cưng.</h4>`;
+    if(petArr.length !=""){
+        sumPet.innerHTML=`<h4>Có ${petArr.length} thú cưng.</h4>`;
+    }else{
+        sumPet.innerHTML=`<h4> Không có thú cưng nào tìm thấy.</h4>`;
+    }
     const check = 'bi bi-check-circle-fill';
     const noncheck = 'bi bi-x-circle-fill';
     for(let i = 0; i < petArr.length; i++){
