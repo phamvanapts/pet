@@ -109,9 +109,9 @@ typeInput.addEventListener('click', renderBreed);
 function renderBreed(){
     breedInput.innerHTML = "<option>Select Breed</option>"; //gán giá trị breedInput bằng Select Breed
     //điều kiện nếu là Dog
-    if(typeInput.value === "Dog"){
+    if(typeInput.value == "Dog"){
         //Đặt biến breedDogs lấy giá trị từ mảng breedArr
-        const breedDogs = breedArr.filter((breedItem)=>breedItem.typebreed === "Dog");
+        const breedDogs = breedArr.filter((breedItem)=>breedItem.typebreed == "Dog");
         // console.log(breedDogs);
         breedDogs.forEach(function(breedItem){
             // alert("Kiểm tra")
@@ -120,9 +120,9 @@ function renderBreed(){
             breedInput.appendChild(option);                        //gán giá trị cho breedInput
         }//Kết thúc function
     );  //Kết thúc forEach
-} else if(typeInput.value === "Cat"){  //điều kiện là Cat
+} else if(typeInput.value == "Cat"){  //điều kiện là Cat
     //đặt biến là mảng chứa các breed là Cad lấy giá trị từ breedArr
-        const breedCats = breedArr.filter((breedItem)=>breedItem.typebreed ==="Cat");
+        const breedCats = breedArr.filter((breedItem)=>breedItem.typebreed =="Cat");
         breedCats.forEach(function(breedItem){
             const option = document.createElement("option");    //khai báo biến option 
             option.innerHTML = `${breedItem.namebreed}`;         //gán giá trị cho option là mảng các namebreed

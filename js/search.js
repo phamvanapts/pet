@@ -49,7 +49,7 @@ function renderTableData(petArr){
         tableBodyEl.appendChild(row);
     }
 }
-renderTableData(petArr);
+renderTableData(petArr); // Hiển thị mảng petArr ra trang
 /**
  * bắt sự kiện khi ấn vào typeInput để chọn loại giống
  */
@@ -71,5 +71,14 @@ renderBreed();
  * Khi click button tìm kiếm
  */
 findbtn.addEventListener('click',function(e){
-    alert('Kiểm tra');
+    let petArrFind = petArr;    //tạo biến mảng petArrFind và gán giá trị bằng với petArr
+    if(idInput.value){    //nếu idInput có giá trị thì
+        petArrFind = petArrFind.filter((pet)=>pet.id.includes(idInput.value)); //lọc giá trị idInput khi có giá trị 
+        // alert(`Kiểm tra `);
+    }
+    if(nameInput.value){    //nếu idInput có giá trị thì
+        petArrFind = petArrFind.filter((pet)=>pet.name.includes(nameInput.value)); //lọc giá trị idInput khi có giá trị 
+        // alert(`Kiểm tra `);
+    }
+    renderTableData(petArrFind); // Hiển thị mảng petArrFind ra trang
 })
