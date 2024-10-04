@@ -6,7 +6,9 @@
  * Tạo và gán các giá trị DOM 
  */
  const tableBodyEl = document.getElementById("tbody"); //giá trị tbody cần cho render bảng
+ const sumPet = document.getElementById("sum-pet"); //giá trị tbody cần cho render bảng
  const findbtn = document.getElementById("find-btn"); //giá trị tbody cần cho render bảng
+ const resetbtn = document.getElementById("reset-btn"); //giá trị tbody cần cho render bảng
  const idInput = document.getElementById("input-id");
  const nameInput = document.getElementById("input-name");
  const ageInput = document.getElementById("input-age");
@@ -23,6 +25,7 @@
  */
 function renderTableData(petArr){
     tableBodyEl.innerHTML=""; //gán giá trị rỗng cho bảng.
+    sumPet.innerHTML=`<h4>Có ${petArr.length} thú cưng.</h4>`;
     const check = 'bi bi-check-circle-fill';
     const noncheck = 'bi bi-x-circle-fill';
     for(let i = 0; i < petArr.length; i++){
@@ -84,5 +87,35 @@ findbtn.addEventListener('click',function(e){
         petArrFind = petArrFind.filter((pet)=>pet.type === typeInput.value); //lọc giá trị idInput khi có giá trị 
         // alert(`Kiểm tra `);
     }
+    if(breedInput.value !== "Select Breed"){    //nếu idInput có giá trị thì
+        petArrFind = petArrFind.filter((pet)=>pet.breed === breedInput.value); //lọc giá trị idInput khi có giá trị 
+        // alert(`Kiểm tra `);
+    }
+    if(vaccinatedInput.checked === true){    //nếu idInput có giá trị thì
+        petArrFind = petArrFind.filter((pet)=>pet.heathyPet.vaccinated === true); //lọc giá trị idInput khi có giá trị 
+        // alert(`Kiểm tra `);
+    }
+    if(dewormedInput.checked === true){    //nếu idInput có giá trị thì
+        petArrFind = petArrFind.filter((pet)=>pet.heathyPet.dewormed === true); //lọc giá trị idInput khi có giá trị 
+        // alert(`Kiểm tra `);
+    }
+    if(sterilizedInput.checked === true){    //nếu idInput có giá trị thì
+        petArrFind = petArrFind.filter((pet)=>pet.heathyPet.sterilized === true); //lọc giá trị idInput khi có giá trị 
+    }
     renderTableData(petArrFind); // Hiển thị mảng petArrFind ra trang
+    // alert(`Có ${petArrFind.length} thú cưng`);
 })
+/**
+ * Trả về giá trị rỗng hoặc giá trị mặt định
+ */
+resetbtn.addEventListener('click',function(e){
+    // alert("Kiểm tra nút");
+    renderTableData(petArr);
+    idInput.value = ""; 
+    nameInput.value = "";
+    typeInput.value == "Select Type";
+    breedInput.value == "Select Breed";
+    vaccinatedInput.checked = false;
+    dewormedInput.checked = false;
+    sterilizedInput.checked = false;
+});

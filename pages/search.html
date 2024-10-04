@@ -31,6 +31,10 @@
 		#main{
 			display: none;
 		}
+		.sum-pet{
+			text-align: center;
+			color: red;
+		}
 	</style>
 	<link rel="stylesheet" href="../css/style.css">
 </head>
@@ -134,11 +138,13 @@
 								</div>
 							</div>
 							<button type="button" class="btn btn-primary" id="find-btn"><i class="bi bi-search"></i> Find</button>
+							<button type="button" class="btn btn-primary" id="reset-btn"><i class="bi bi-arrow-clockwise"></i> Reset</button>
 						</form>
 					</div>
 				</div>
 			</div>
 			<div class="container" style="max-width: 90%">
+				<div class="sum-pet" id="sum-pet"></div>
 				<table class="table table-striped">
 					<thead>
 						<tr>
